@@ -1,0 +1,199 @@
+/* 2 August 2025 */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Code';
+    --background: #0D0A1F;
+    --primary-text: #D3A3FF;
+    --accent-text: #8E44AD;
+    --error-text: #FF5DA2;
+    --glow: #D3A3FF;
+}
+
+[data-theme="dark"] {
+    --background: #F5F7FA;
+    --primary-text: #333333;
+    --accent-text: #007ACC;
+    --error-text: #D32F2F;
+    --glow: #3399FF;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--primary-text);
+    overflow: hidden hidden;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.terminal {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+
+    width: 60%;
+    height: 75%;
+    border: 0 solid var(--accent-text);
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 10px;
+    box-shadow: 0 0 8px 0 #a406ff, 0 0 20px 0 #a406ff;
+
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 5px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    text-align: center;
+    display: inline-block;
+}
+
+#hide {
+    cursor: pointer;
+    padding-top: 4px;
+    padding-left: 0.5vw;
+    padding-bottom: 6px;
+    color: rgba(255, 255, 0, 0.568);
+}
+
+#hide:hover {
+    color: rgb(238, 255, 0);
+}
+
+#quit {
+    cursor: pointer;
+    padding-left: 1.1vw;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    color: rgba(255, 0, 0, 0.589);
+}
+
+#quit:hover {
+    color: red;
+}
+
+.terminalBody {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+}
+
+.terminalBody::-webkit-scrollbar {
+    display: none;
+}
+
+.userShell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 5px;
+    position: relative;
+    left: 1.5%;
+}
+
+label {
+    height: 4vh;
+    /* margin-top: 1%; */
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    height: auto;
+    height: 1rem;
+    margin: 0;
+    padding: 0;
+    cursor: text;
+}
+
+.userInfo {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.directory {
+    color: #50FA7B;
+}
+
+.userInput {
+    display: flex;
+    align-items: center;
+    /* Ensures vertical alignment with prompt */
+    width: 100%;
+    /* white-space: nowrap; */
+    white-space: normal;
+    word-break: break-all;
+}
+
+input {
+    background-color: var(--background);
+    border: none;
+    outline: none;
+    color: var(--primary-text);
+    font-size: 1rem;
+    line-height: 1rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.userOutput {
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: 4px 0;
+    margin: 0;
+    height: auto;
+    /* Match the expected height of input */
+    /* display: flex; */
+    /* align-items: center; */
+
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    width: 100%;
+    background-color: var(--background);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--primary-text);
+}
