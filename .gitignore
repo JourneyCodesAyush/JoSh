@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled files / cache
+*.class
+*.pyc
+*.o
+*.out
+
+# Node 
+node_modules/
+dist/
+.env
+
+# VSCode
+.vscode/
+
+# (Optional) System/IDE files
+.idea/
+*.swp
+
+# Build/Deploy
+build/
+temp/
+*.zip
+*.tar.gz
