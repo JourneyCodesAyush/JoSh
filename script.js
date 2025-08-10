@@ -108,6 +108,22 @@ function handleHelp(args) {
 }
 
 /**
+ * Handles the 'clear' command to clear the terminal.
+ * 
+ * @param {string[]} args - The command arguments.
+ * @returns {string} Error message if extra arguments are provided, otherwise empty string.
+ */
+function handleClear(args) {
+    if (args.length > 1) {
+        return `help: No argument expected here`;
+    }
+
+    const terminalBody = document.querySelector(".terminalBody");
+    terminalBody.innerHTML = "";
+    return ``;
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -185,6 +201,12 @@ function argParse(command) {
             if (message) {
                 addMessage(message);
             }
+            addNewCommandLine();
+            break;
+
+        case "clear":
+            message = handleClear(commandArgs);
+            addMessage(message, false);
             addNewCommandLine();
             break;
 
