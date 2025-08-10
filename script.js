@@ -94,6 +94,18 @@ const fileSystem = {
     },
 };
 
+/**
+ * Handles the 'help' command to show the help message.
+ * 
+ * @param {string[]} args - The command arguments.
+ * @returns {string} The help message if no arguments are given, or an error message otherwise.
+ */
+function handleHelp(args) {
+    if (args.length > 1) {
+        return `help: No argument expected here`;
+    }
+    return `${fileSystem["bin"]["help"]}`
+}
 
 /**
  * Adds a new command line interface section to the terminal and sets up input listener.
@@ -168,7 +180,17 @@ function argParse(command) {
     let message = "";
 
     switch (commandArgs[0]) {
+        case "help":
+            message = handleHelp(commandArgs);
+            if (message) {
+                addMessage(message);
+            }
+            addNewCommandLine();
+            break;
+
         default:
+            addMessage(`Command not found: ${commandArgs[0]}`)
+            addNewCommandLine();
             break;
     }
 }
