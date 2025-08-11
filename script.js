@@ -124,6 +124,18 @@ function handleClear(args) {
 }
 
 /**
+ * Handles the 'ls' command to list items in the current directory.
+ * 
+ * @returns {string} Output string of the current directory listing or error message.
+ */
+function handleLs() {
+    const message = traverseFileSystem(currentPath);
+    if (!message)
+        return `Directory not found ${currentPath.join("/")}`;
+    return message;
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -207,6 +219,15 @@ function argParse(command) {
         case "clear":
             message = handleClear(commandArgs);
             addMessage(message, false);
+            addNewCommandLine();
+            break;
+
+        case "ls":
+            currentPath = getCurrentPathFromDOM();
+            message = handleLs();
+            if (message) {
+                addMessage(message);
+            }
             addNewCommandLine();
             break;
 
