@@ -94,6 +94,48 @@ const fileSystem = {
     },
 };
 
+let currentPath = ["home", "ayush"];
+
+/**
+ * Retrieves the current path from the DOM by extracting the text from elements with class "directory".
+ * 
+ * @returns {string[]} An array of strings representing the current directory path.
+ */
+function getCurrentPathFromDOM() {
+    let directory = document.querySelectorAll(".directory");
+    directory = Array.from(directory);
+
+    let lastDirectory = directory[directory.length - 1];
+
+    if (directory.length === 0) {
+        return [];
+    }
+
+    let dirText = lastDirectory.innerText.split("/").filter(Boolean);
+    return dirText;
+}
+
+/**
+ * Traverses the file system based on the provided command (path) and returns the contents of that directory.
+ * 
+ * @param {string[]} command - The path as an array of strings representing directory names.
+ * @returns {string} A newline-separated string of items in the target directory, or empty string if not found.
+ */
+function traverseFileSystem(command) {
+    let dir = fileSystem;
+
+    for (const part of command) {
+        if (part in dir) {
+            dir = dir[part];
+        } else {
+            return "";
+        }
+    }
+    let files = Object.keys(dir);
+    return files.join("\n");
+}
+
+
 /**
  * Handles the 'help' command to show the help message.
  * 
@@ -172,6 +214,41 @@ function handleCd(args) {
     }
     currentPath = newPath;
     return "";
+}
+
+/**
+ * Handles the 'cat' command to display the content of a file.
+ * 
+ * @param {string[]} args - The command arguments, where args[1] is the target filename.
+ * @returns {string} The file content if found, or an error message if not.
+ */
+function handleCat(args) {
+    if (args.length < 2) {
+        return `cat: No such file : ${args[0]}`;
+    }
+    let newPath = [...currentPath];
+    let target = args[1];
+    let dir = fileSystem;
+    for (const part of newPath) {
+        if (dir[part] && typeof (dir[part]) === "object") {
+            dir = dir[part];
+        } else {
+            return `cat: Path invalid at ${target}`;
+        }
+    }
+
+
+    if (!(target in dir)) {
+        return `cat: No such file : ${args[0]}`;
+    }
+
+    const file = dir[target];
+    if (typeof file === "string") {
+        return file;
+    }
+    else {
+        return `cat: ${target} is a directory`
+    }
 }
 
 /**
@@ -272,6 +349,14 @@ function argParse(command) {
 
         case "cd":
             message = handleCd(commandArgs);
+            if (message) {
+                addMessage(message);
+            }
+            addNewCommandLine();
+            break;
+
+        case "cat":
+            message = handleCat(commandArgs);
             if (message) {
                 addMessage(message);
             }
