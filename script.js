@@ -136,6 +136,45 @@ function handleLs() {
 }
 
 /**
+ * Handles the 'cd' command to change the current directory path.
+ * 
+ * @param {string[]} args - The command and its arguments as an array.
+ * @returns {string} An error message if the directory doesn't exist, otherwise an empty string.
+ */
+function handleCd(args) {
+    if (args.length < 2) {
+        currentPath = ["home", "ayush"];
+        return "cd: Reset to home directory";
+    }
+
+    let target = args[1];
+    let newPath = [...currentPath];
+
+    if (target === "..") {
+        if (newPath.length > 0) {
+            newPath.pop();
+        }
+    }
+    else if (target === "/") {
+        newPath = [];
+    }
+    else {
+        newPath.push(target);
+    }
+
+    let dir = fileSystem;
+    for (const part of newPath) {
+        if (dir[part] && typeof (dir[part]) === "object") {
+            dir = dir[part];
+        } else {
+            return `cd: No such directory : ${target}`;
+        }
+    }
+    currentPath = newPath;
+    return "";
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -225,6 +264,14 @@ function argParse(command) {
         case "ls":
             currentPath = getCurrentPathFromDOM();
             message = handleLs();
+            if (message) {
+                addMessage(message);
+            }
+            addNewCommandLine();
+            break;
+
+        case "cd":
+            message = handleCd(commandArgs);
             if (message) {
                 addMessage(message);
             }
