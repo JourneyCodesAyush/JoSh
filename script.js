@@ -81,6 +81,7 @@ const fileSystem = {
                 - cd: Change directory
                 - cat: Display file contents
                 - help: Show this help message
+                - clear: Clear the terminal window
                 `.trim(),
         cd: "Change directory command to navigate through folders",
         ls: "List the items in current directory command",
