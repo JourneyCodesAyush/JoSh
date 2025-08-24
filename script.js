@@ -262,12 +262,12 @@ function addNewCommandLine() {
     userShellInput.className = "userShell";
 
     const userName = sessionStorage.getItem("userName") || "visitor";
-
+    const uniqueNum = sessionStorage.getItem("uniqueNum") || "1729"
     const displayPath =
         currentPath.length > 0 ? `/${currentPath.join("/")}` : "/";
 
     userShellInput.innerHTML = `<label for="userCommand" class="title">
-                    <div class="userInfo">${userName}@${userName}0943: ~<span class="directory">${displayPath}</span> $</div>
+                    <div class="userInfo">${userName}@${userName}${uniqueNum}: ~<span class="directory">${displayPath}</span> $</div>
                 </label>
                 <div class="userInput">
                     <input class="userCommand" name="userCommand" type="text" size="51" autofocus>
@@ -395,12 +395,18 @@ function main() {
     let inputs = document.getElementsByTagName("input");
     inputs = Array.from(inputs);
 
-    document.querySelector(".userCommand").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            let command = document.querySelector(".userCommand").value;
-            argParse(command);
-        }
-    });
+    const uniqueNum = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000);
+    sessionStorage.setItem("uniqueNum", uniqueNum);
+    
+    
+    // document.querySelector(".userCommand").addEventListener("keypress", (e) => {
+    //     if (e.key === "Enter") {
+    //         let command = document.querySelector(".userCommand").value;
+    //         argParse(command);
+    //     }
+    // });
+    
+    addNewCommandLine();
 }
 
 main();
