@@ -261,11 +261,13 @@ function addNewCommandLine() {
     const userShellInput = document.createElement("div");
     userShellInput.className = "userShell";
 
+    const userName = sessionStorage.getItem("userName") || "visitor";
+
     const displayPath =
         currentPath.length > 0 ? `/${currentPath.join("/")}` : "/";
 
     userShellInput.innerHTML = `<label for="userCommand" class="title">
-                    <div class="userInfo">visitor@visitor0943: ~<span class="directory">${displayPath}</span> $</div>
+                    <div class="userInfo">${userName}@${userName}0943: ~<span class="directory">${displayPath}</span> $</div>
                 </label>
                 <div class="userInput">
                     <input class="userCommand" name="userCommand" type="text" size="51" autofocus>
@@ -360,6 +362,17 @@ function argParse(command) {
             message = handleCat(commandArgs);
             if (message) {
                 addMessage(message);
+            }
+            addNewCommandLine();
+            break;
+
+        case "setname":
+            if (commandArgs.length < 2) {
+                addMessage("Usage: setname [your_name]")
+            }
+            else{
+                sessionStorage.setItem("userName",commandArgs[1])
+                addMessage(`Username set to ${commandArgs[1]}`)
             }
             addNewCommandLine();
             break;
