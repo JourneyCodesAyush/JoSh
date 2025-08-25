@@ -80,6 +80,7 @@ const fileSystem = {
                 - ls: List the items in current directory
                 - cd: Change directory
                 - cat: Display file contents
+                - pwd: Print working directory
                 - help: Show this help message
                 - clear: Clear the terminal window
                 `.trim(),
@@ -370,9 +371,23 @@ function argParse(command) {
             if (commandArgs.length < 2) {
                 addMessage("Usage: setname [your_name]")
             }
-            else{
-                sessionStorage.setItem("userName",commandArgs[1])
+            else {
+                sessionStorage.setItem("userName", commandArgs[1])
                 addMessage(`Username set to ${commandArgs[1]}`)
+            }
+            addNewCommandLine();
+            break;
+
+        case "pwd":
+            if (commandArgs.length > 1) {
+                addMessage("Usage: pwd (No optional arguments)");
+            }
+            else {
+                let pathStr = "/" + currentPath.join("/")
+                if (pathStr.startsWith("/home/ayush")) {
+                    pathStr = pathStr.replace("/home/ayush", "~")
+                }
+                addMessage(pathStr);
             }
             addNewCommandLine();
             break;
@@ -397,15 +412,15 @@ function main() {
 
     const uniqueNum = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000);
     sessionStorage.setItem("uniqueNum", uniqueNum);
-    
-    
+
+
     // document.querySelector(".userCommand").addEventListener("keypress", (e) => {
     //     if (e.key === "Enter") {
     //         let command = document.querySelector(".userCommand").value;
     //         argParse(command);
     //     }
     // });
-    
+
     addNewCommandLine();
 }
 
