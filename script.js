@@ -82,11 +82,13 @@ const fileSystem = {
                 - cat: Display file contents
                 - pwd: Print working directory
                 - help: Show this help message
+                - date: Print system date
                 - clear: Clear the terminal window
                 `.trim(),
         cd: "Change directory command to navigate through folders",
         ls: "List the items in current directory command",
         clear: "Clear the terminal window",
+        date: "Print system date",
         cat: "Display the contents of file on the terminal",
     },
     dev: {
@@ -254,6 +256,21 @@ function handleCat(args) {
 }
 
 /**
+ * Handles the 'date' command by returning the current date.
+ * 
+ * @returns {string} - The current system date in the format DD/MM/YYYY.
+ */
+function handleDate() {
+
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    return `${day}/${month}/${year}`
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -388,6 +405,17 @@ function argParse(command) {
                     pathStr = pathStr.replace("/home/ayush", "~")
                 }
                 addMessage(pathStr);
+            }
+            addNewCommandLine();
+            break;
+
+        case "date":
+            if (commandArgs.length > 1) {
+                addMessage("Usage: date (No optional arguments)")
+            }
+            else {
+                const date = handleDate();
+                addMessage(date)
             }
             addNewCommandLine();
             break;
