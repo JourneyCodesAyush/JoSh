@@ -1,23 +1,28 @@
 /* 2 August 2025 */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Fira Code';
-    --background: #0D0A1F;
-    --primary-text: #D3A3FF;
-    --accent-text: #8E44AD;
-    --error-text: #FF5DA2;
-    --glow: #D3A3FF;
+    font-family: "Fira Code";
 }
 
-[data-theme="dark"] {
-    --background: #F5F7FA;
+:root {
+    /* Dark theme */
+    --background: #0d0a1f;
+    --primary-text: #d3a3ff;
+    --accent-text: #8e44ad;
+    --error-text: #ff5da2;
+    --glow: #d3a3ff;
+}
+
+[data-theme="light"] {
+    /* Light theme */
+    --background: #f5f7fa;
     --primary-text: #333333;
-    --accent-text: #007ACC;
-    --error-text: #D32F2F;
-    --glow: #3399FF;
+    --accent-text: #007acc;
+    --error-text: #d32f2f;
+    --glow: #3399ff;
 }
 
 body {
@@ -48,7 +53,6 @@ body {
 
     border-radius: 10px;
     box-shadow: 0 0 8px 0 #a406ff, 0 0 20px 0 #a406ff;
-
 }
 
 .controls {
@@ -139,7 +143,7 @@ label {
 }
 
 .directory {
-    color: #50FA7B;
+    color: #50fa7b;
 }
 
 .userInput {
