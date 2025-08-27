@@ -84,12 +84,14 @@ const fileSystem = {
                 - help: Show this help message
                 - date: Print system date
                 - clear: Clear the terminal window
+                - theme: Toggle the theme of the terminal window
                 `.trim(),
         cd: "Change directory command to navigate through folders",
         ls: "List the items in current directory command",
         clear: "Clear the terminal window",
         date: "Print system date",
         cat: "Display the contents of file on the terminal",
+        theme: "Toggle between light and dark theme"
     },
     dev: {
         "script.js": `
@@ -271,6 +273,25 @@ function handleDate() {
 }
 
 /**
+ * Handles the 'theme' command by changint the current theme.
+ * It checks the current theme and switches to the opposite one. The preference is saved in sessionStorage 
+ * so that it persists across page reloads.
+ * 
+ * @returns {void} - Nothing is returned.
+ */
+function handleTheme() {
+
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    document.documentElement.setAttribute("data-theme", newTheme);
+    sessionStorage.setItem("theme", newTheme);
+
+    const savedTheme = sessionStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -416,6 +437,16 @@ function argParse(command) {
             else {
                 const date = handleDate();
                 addMessage(date)
+            }
+            addNewCommandLine();
+            break;
+
+        case "theme":
+            if (commandArgs.length > 1) {
+                addMessage("Usage: theme (No optional arguments)")
+            }
+            else {
+                handleTheme();
             }
             addNewCommandLine();
             break;
