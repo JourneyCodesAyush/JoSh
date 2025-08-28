@@ -105,6 +105,7 @@ const fileSystem = {
 };
 
 let currentPath = ["home", "ayush"];
+let commandHistory = [];
 
 /**
  * Retrieves the current path from the DOM by extracting the text from elements with class "directory".
@@ -323,6 +324,22 @@ function handleWhoAmI() {
 }
 
 /**
+ * Handles the 'history' command, which displays the list of previously entered commands.
+ * 
+ * This function retrieves and formats the command history stored in the commandHistory array. 
+ * It returns a newline-separated list of commands, which are the user inputs from past terminal sessions.
+ * If no commands have been executed, it will return an empty string.
+ * 
+ * @returns {string} A string containing the history of executed commands, each on a new line.
+ *                  If no commands have been run, an empty string is returned.
+ */
+function handleHistory() {
+
+    return commandHistory.map(cmdArr => cmdArr.join(" ")).join("\n");
+
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -402,12 +419,14 @@ function argParse(command) {
             if (message) {
                 addMessage(message);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
         case "clear":
             message = handleClear(commandArgs);
             addMessage(message, false);
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -417,6 +436,7 @@ function argParse(command) {
             if (message) {
                 addMessage(message);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -425,6 +445,7 @@ function argParse(command) {
             if (message) {
                 addMessage(message);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -433,6 +454,7 @@ function argParse(command) {
             if (message) {
                 addMessage(message);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -444,6 +466,7 @@ function argParse(command) {
                 sessionStorage.setItem("userName", commandArgs[1])
                 addMessage(`Username set to ${commandArgs[1]}`)
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -458,6 +481,7 @@ function argParse(command) {
                 }
                 addMessage(pathStr);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -469,6 +493,7 @@ function argParse(command) {
                 const date = handleDate();
                 addMessage(date)
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -479,6 +504,7 @@ function argParse(command) {
             else {
                 handleTheme();
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -489,6 +515,7 @@ function argParse(command) {
             else {
                 handleEcho(commandArgs);
             }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
@@ -500,6 +527,19 @@ function argParse(command) {
                 const whoami = handleWhoAmI();
                 addMessage(whoami);
             }
+            commandHistory.push(commandArgs);
+            addNewCommandLine();
+            break;
+
+        case "history":
+            if (commandArgs.length > 1) {
+                addMessage("Usage: history (No arguments)")
+            }
+            else {
+                const history = handleHistory();
+                addMessage(history);
+            }
+            commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
 
