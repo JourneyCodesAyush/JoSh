@@ -86,6 +86,7 @@ const fileSystem = {
                 - echo: Print text given by the user on the terminal
                 - clear: Clear the terminal window
                 - theme: Toggle the theme of the terminal window
+                - whoami: Print the username
                 `.trim(),
         cd: "Change directory command to navigate through folders",
         ls: "List the items in current directory command",
@@ -93,7 +94,8 @@ const fileSystem = {
         date: "Print system date",
         cat: "Display the contents of file on the terminal",
         theme: "Toggle between light and dark theme",
-        echo: "Print the text given by the user on the terminal"
+        echo: "Print the text given by the user on the terminal",
+        whoami: "Print the username"
     },
     dev: {
         "script.js": `
@@ -308,6 +310,19 @@ function handleEcho(args) {
 }
 
 /**
+ * Retrieves the current username stored in sessionStorage.
+ * If no username is set, returns "visitor" as a default.
+ * 
+ * @returns {string} The username currently stored in sessionStorage or "visitor".
+ */
+function handleWhoAmI() {
+
+    const userName = sessionStorage.getItem("userName") || "visitor";
+    return userName;
+
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -473,6 +488,17 @@ function argParse(command) {
             }
             else {
                 handleEcho(commandArgs);
+            }
+            addNewCommandLine();
+            break;
+
+        case "whoami":
+            if (commandArgs.length > 1) {
+                addMessage("Usage: whoami (No arguments)")
+            }
+            else {
+                const whoami = handleWhoAmI();
+                addMessage(whoami);
             }
             addNewCommandLine();
             break;
