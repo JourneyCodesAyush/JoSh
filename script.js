@@ -83,6 +83,7 @@ const fileSystem = {
                 - pwd: Print working directory
                 - help: Show this help message
                 - date: Print system date
+                - echo: Print text given by the user on the terminal
                 - clear: Clear the terminal window
                 - theme: Toggle the theme of the terminal window
                 `.trim(),
@@ -91,7 +92,8 @@ const fileSystem = {
         clear: "Clear the terminal window",
         date: "Print system date",
         cat: "Display the contents of file on the terminal",
-        theme: "Toggle between light and dark theme"
+        theme: "Toggle between light and dark theme",
+        echo: "Print the text given by the user on the terminal"
     },
     dev: {
         "script.js": `
@@ -292,6 +294,20 @@ function handleTheme() {
 }
 
 /**
+ * Handles the 'echo' command by printing user-provided text to the terminal.
+ * It joins all arguments after 'echo' and displays them using addMessage().
+ * 
+ * @param {string[]} args - The command arguments; everything after 'echo' is treated as text.
+ * @returns {void}
+ */
+function handleEcho(args) {
+
+    let message = args.slice(1).join(" ").trim();
+    addMessage(message);
+
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -447,6 +463,16 @@ function argParse(command) {
             }
             else {
                 handleTheme();
+            }
+            addNewCommandLine();
+            break;
+
+        case "echo":
+            if (commandArgs.length < 2) {
+                addMessage("Usage: echo <text you want to print>")
+            }
+            else {
+                handleEcho(commandArgs);
             }
             addNewCommandLine();
             break;
