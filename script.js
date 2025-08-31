@@ -95,7 +95,8 @@ const fileSystem = {
         cat: "Display the contents of file on the terminal",
         theme: "Toggle between light and dark theme",
         echo: "Print the text given by the user on the terminal",
-        whoami: "Print the username"
+        whoami: "Print the username",
+        social: "Print the details of the social media"
     },
     dev: {
         "script.js": `
@@ -340,6 +341,45 @@ function handleHistory() {
 }
 
 /**
+ * Handles the 'social' command to display URLs of social media platforms.
+ * 
+ * If no platform is specified, it returns links to GitHub and LinkedIn.
+ * If a valid platform (github or linkedin) is provided, it returns the corresponding URL.
+ * 
+ * @param {string[]} args - The command arguments where args[1] is the platform (optional).
+ * @returns {string} The URL of the specified platform or a list of default platforms.
+ */
+function handleSocial(args) {
+
+    const platform = args[1]?.toLowerCase();
+
+    if (args.length < 2) {
+        return `
+GitHub: <a href="https://github.com/JourneyCodesAyush" target="_blank">https://github.com/JourneyCodesAyush</a>
+LinkedIn: <a href="https://linkedin.com/in/journeycodesayush" target="_blank">https://linkedin.com/in/journeycodesayush</a>
+        `.trim();
+    }
+
+    switch (platform) {
+        case github:
+            return `
+GitHub: <a href="https://github.com/JourneyCodesAyush" target="_blank">https://github.com/JourneyCodesAyush</a>
+            `.trim();
+
+        case linkedin:
+            return `
+LinkedIn: <a href="https://linkedin.com/in/journeycodesayush" target="_blank">https://linkedin.com/in/journeycodesayush</a>
+            `.trim();
+
+        default:
+            return `
+            Unknown platform: ${args[1]}. Usage: [github | linkedin]
+            `.trim();
+    }
+
+}
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -391,9 +431,9 @@ function addMessage(message, success = true) {
         const userShellOutput = document.createElement("div");
         userShellOutput.className = "userShell";
         userShellOutput.innerHTML = `                
-        <div class="userOutput"></div>`;
+        <div class="userOutput">${message}</div>`;
 
-        userShellOutput.querySelector(".userOutput").textContent = message;
+        // userShellOutput.querySelector(".userOutput").textContent = message;
         terminalBody.appendChild(userShellOutput);
     }
 }
@@ -539,6 +579,14 @@ function argParse(command) {
                 const history = handleHistory();
                 addMessage(history);
             }
+            commandHistory.push(commandArgs);
+            addNewCommandLine();
+            break;
+
+        case "social":
+            const history = handleSocial(commandArgs);
+            addMessage(history);
+
             commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
