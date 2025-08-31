@@ -186,6 +186,22 @@ input {
     padding-right: 1rem;
 }
 
+.userShell .userOutput a {
+    color: var(--accent-text); 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.userShell .userOutput a:hover {
+    color: var(--glow);
+    text-decoration: underline;
+}
+
+
+.userShell .userOutput a:visited {
+    color: var(--primary-text); 
+}
+
 footer {
     position: absolute;
     bottom: 0;
