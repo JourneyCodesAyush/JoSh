@@ -202,6 +202,40 @@ input {
     color: var(--primary-text); 
 }
 
+.restore {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: var(--background);
+    color: var(--primary-text);
+
+    padding: 10px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+    font-size: 16px;
+    font-weight: bold;
+
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: background 0.3s ease;
+}
+
+.restore p {
+    margin: 0 0 0 10px;
+    font-size: 18px;
+    transform: translateY(-1px);
+}
+
+.restore:hover {
+    background-color: #555;
+}
+
+
 footer {
     position: absolute;
     bottom: 0;
