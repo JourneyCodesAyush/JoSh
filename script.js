@@ -603,7 +603,20 @@ function argParse(command) {
  */
 function main() {
     document.getElementById("hide").addEventListener("click", () => {
-        document.querySelector(".terminal").style.display = "none";
+        const terminal = document.querySelector(".terminal");
+        terminal.style.display = "none";
+
+        const restoreDiv = document.createElement("div");
+        restoreDiv.innerHTML = `Restore <p>⤒</p>`;
+        restoreDiv.className = "restore";
+
+        restoreDiv.addEventListener("click", () => {
+
+            restoreDiv.remove();
+            terminal.style.display = "block";
+        });
+
+        terminal.parentNode.insertBefore(restoreDiv, terminal.nextSibling);
     });
 
     let inputs = document.getElementsByTagName("input");
