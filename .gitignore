@@ -39,3 +39,6 @@ build/
 temp/
 *.zip
 *.tar.gz
+
+# Unnecessary .txt files
+*.txt
