@@ -96,7 +96,8 @@ const fileSystem = {
         theme: "Toggle between light and dark theme",
         echo: "Print the text given by the user on the terminal",
         whoami: "Print the username",
-        social: "Print the details of the social media"
+        social: "Print the details of the social media",
+        man: "Print the manual of a command"
     },
     dev: {
         "script.js": `
@@ -104,6 +105,64 @@ const fileSystem = {
                 `.trim(),
     },
 };
+
+const manuals = {
+    help: `
+help - Lists all available commands with a short description.
+Usage: help
+`.trim(),
+
+    ls: `
+ls - Lists files and folders in the current directory.
+Usage: ls
+`.trim(),
+
+    cd: `
+cd - Changes the current directory.
+Usage: cd [dir] | cd .. | cd /
+`.trim(),
+
+    cat: `
+cat - Displays content of a file.
+Usage: cat [filename]
+`.trim(),
+
+    pwd: `
+pwd - Prints the current directory path.
+Usage: pwd
+`.trim(),
+
+    date: `
+date - Shows the current system date (DD/MM/YYYY).
+Usage: date
+`.trim(),
+
+    echo: `
+echo - Prints text to the terminal.
+Usage: echo [your text]
+`.trim(),
+
+    clear: `
+clear - Clears the terminal output.
+Usage: clear
+`.trim(),
+
+    theme: `
+theme - Toggles between light and dark mode.
+Usage: theme
+`.trim(),
+
+    whoami: `
+whoami - Displays the current username.
+Usage: whoami
+`.trim(),
+
+    social: `
+social - Shows social media links. Supports 'github' and 'linkedin'.
+Usage: social [platform]
+`.trim(),
+};
+
 
 let currentPath = ["home", "ayush"];
 let commandHistory = [];
@@ -380,6 +439,27 @@ LinkedIn: <a href="https://linkedin.com/in/journeycodesayush" target="_blank">ht
 }
 
 /**
+ * Handles the 'man' command by returning the manual entry for a given command.
+ * 
+ * This function looks up the specified command (from args[1]) in the predefined manuals object.
+ * If a manual entry exists, it returns the corresponding usage information.
+ * If the command is not found, it returns an error message indicating that the command does not exist.
+ * 
+ * @param {string[]} args - An array where the second element (args[1]) is expected to be the command name.
+ * @returns {string} The manual/help description of the specified command, or an error message if not found.
+ */
+function handleMan(args) {
+
+    const command = args[1];
+    if (command in manuals) {
+        const manDescription = manuals[command];
+        return manDescription;
+    }
+    return `${command} does not exist`;
+}
+
+
+/**
  * Adds a new command line interface section to the terminal and sets up input listener.
  */
 function addNewCommandLine() {
@@ -587,6 +667,21 @@ function argParse(command) {
             const history = handleSocial(commandArgs);
             addMessage(history);
 
+            commandHistory.push(commandArgs);
+            addNewCommandLine();
+            break;
+
+        case "man":
+            if (commandArgs.length > 2) {
+                addMessage("Usage: man [command]");
+            }
+            else if (commandArgs.length < 2) {
+                addMessage("Usage: man [command]. Try man help, man ls, etc.");
+            }
+            else {
+                const manDescription = handleMan(commandArgs);
+                addMessage(manDescription);
+            }
             commandHistory.push(commandArgs);
             addNewCommandLine();
             break;
