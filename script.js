@@ -371,14 +371,14 @@ function handleEcho(args) {
 }
 
 /**
- * Retrieves the current username stored in sessionStorage.
+ * Retrieves the current username stored in localStorage.
  * If no username is set, returns "visitor" as a default.
  * 
- * @returns {string} The username currently stored in sessionStorage or "visitor".
+ * @returns {string} The username currently stored in localStorage or "visitor".
  */
 function handleWhoAmI() {
 
-    const userName = sessionStorage.getItem("userName") || "visitor";
+    const userName = localStorage.getItem("userName") || "visitor";
     return userName;
 
 }
@@ -468,7 +468,7 @@ function addNewCommandLine() {
     const userShellInput = document.createElement("div");
     userShellInput.className = "userShell";
 
-    const userName = sessionStorage.getItem("userName") || "visitor";
+    const userName = localStorage.getItem("userName") || "visitor";
     const uniqueNum = sessionStorage.getItem("uniqueNum") || "1729"
     const displayPath =
         currentPath.length > 0 ? `/${currentPath.join("/")}` : "/";
@@ -583,7 +583,7 @@ function argParse(command) {
                 addMessage("Usage: setname [your_name]")
             }
             else {
-                sessionStorage.setItem("userName", commandArgs[1])
+                localStorage.setItem("userName", commandArgs[1])
                 addMessage(`Username set to ${commandArgs[1]}`)
             }
             commandHistory.push(commandArgs);
