@@ -714,6 +714,14 @@ function main() {
         terminal.parentNode.insertBefore(restoreDiv, terminal.nextSibling);
     });
 
+    document.getElementById("quit").addEventListener("click", () => {
+        const terminal = document.querySelector(".terminal");
+        terminal.remove();
+
+        const footer = document.querySelector(".message");
+        footer.classList.add("quitState");
+    });
+
     let inputs = document.getElementsByTagName("input");
     inputs = Array.from(inputs);
 
