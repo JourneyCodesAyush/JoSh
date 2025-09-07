@@ -19,7 +19,11 @@
  * A mock file system structure representing directories and files as nested objects.
  * Files are represented as strings, directories as nested objects.
  * 
- * Example structure:
+ * @constant
+ * @type {Object<string, any>}
+ * 
+ * @example
+ * // Example structure:
  * {
  *   home: {
  *     ayush: {
@@ -33,8 +37,6 @@
  *     help: "Help text"
  *   }
  * }
- * 
- * @type {Object<string, any>}
  */
 
 
@@ -139,7 +141,14 @@ const fileSystem = {
     },
 };
 
-
+/**
+ * Represents the current working directory as a path array.
+ *
+ * @type {string[]}
+ * @example
+ * // Represents /home/ayush
+ * ["home", "ayush"]
+ */
 let currentPath = ["home", "ayush"];
 
 export {
