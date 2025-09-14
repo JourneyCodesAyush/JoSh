@@ -1,5 +1,5 @@
 # Ensure consistent line endings across platforms
 * text=auto
 
-# Treat image files as binary (the ones in assets/)
-assets/*.{png,jpg,jpeg} binary
+# Treat image files as binary (the ones in the repo)
+*.{png,jpg,jpeg,ico,gif,svg} binary
