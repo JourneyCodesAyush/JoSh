@@ -37,7 +37,25 @@ function main() {
     const uniqueNum = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000);
     sessionStorage.setItem("uniqueNum", uniqueNum);
 
-    console.log("Main content being loaded")
+    // console.log("Main content being loaded")
+
+    const terminalBody = document.querySelector(".terminalBody");
+    const welcomeDiv = document.createElement("div")
+    welcomeDiv.classList = "welcomeMessage"
+    welcomeDiv.innerHTML = `
+          <span>Welcome to the JoSh (Journey Shell)! Type</span>
+          <span class="command"> help</span>
+          <span> to see the list of possible commands</span>
+        
+`
+    // terminalBody.appendChild(welcomeDiv);
+
+    const firstChild = terminalBody.firstElementChild;
+    if (firstChild && firstChild.nextSibling) {
+        terminalBody.insertBefore(welcomeDiv, firstChild.nextSibling);
+    } else {
+        terminalBody.appendChild(welcomeDiv);
+    }
 
     addNewCommandLine();
 }
