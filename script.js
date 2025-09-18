@@ -420,12 +420,12 @@ LinkedIn: <a href="https://linkedin.com/in/journeycodesayush" target="_blank">ht
     }
 
     switch (platform) {
-        case github:
+        case "github":
             return `
 GitHub: <a href="https://github.com/JourneyCodesAyush" target="_blank">https://github.com/JourneyCodesAyush</a>
             `.trim();
 
-        case linkedin:
+        case "linkedin":
             return `
 LinkedIn: <a href="https://linkedin.com/in/journeycodesayush" target="_blank">https://linkedin.com/in/journeycodesayush</a>
             `.trim();
@@ -664,8 +664,8 @@ function argParse(command) {
             break;
 
         case "social":
-            const history = handleSocial(commandArgs);
-            addMessage(history);
+
+            addMessage(handleSocial(commandArgs));
 
             commandHistory.push(commandArgs);
             addNewCommandLine();
@@ -722,8 +722,8 @@ function main() {
         footer.classList.add("quitState");
     });
 
-    let inputs = document.getElementsByTagName("input");
-    inputs = Array.from(inputs);
+    // let inputs = document.getElementsByTagName("input");
+    // inputs = Array.from(inputs);
 
     const uniqueNum = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000);
     sessionStorage.setItem("uniqueNum", uniqueNum);
@@ -735,6 +735,24 @@ function main() {
     //         argParse(command);
     //     }
     // });
+    const terminalBody = document.querySelector(".terminalBody");
+    const welcomeDiv = document.createElement("div")
+    welcomeDiv.classList = "welcomeMessage"
+    welcomeDiv.innerHTML = `
+          <span>Welcome to the JoSh (Journey Shell)! Type</span>
+          <span class="command"> help</span>
+          <span> to see the list of possible commands</span>
+        
+`
+    // terminalBody.appendChild(welcomeDiv);
+
+    const firstChild = terminalBody.firstElementChild;
+
+    if (firstChild && firstChild.nextSibling) {
+        terminalBody.insertBefore(welcomeDiv, firstChild.nextSibling);
+    } else {
+        terminalBody.appendChild(welcomeDiv);
+    }
 
     addNewCommandLine();
 }
