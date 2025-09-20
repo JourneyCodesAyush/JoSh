@@ -12,7 +12,7 @@
 ---
 
 A terminal-style portfolio built using HTML, CSS, and vanilla JavaScript.  
-Inspired by [evillprince2009.github.io](https://github.com/evillprince2009/evillprince2009.github.io), this project brings the retro charm of a command-line interface to your personal website.
+Inspired by [evilprince2009.github.io](https://github.com/evilprince2009/evilprince2009.github.io), this project brings the retro charm of a command-line interface to your personal website.
 
 > ⚠️ **Note**: This portfolio currently supports only desktop view (no mobile responsiveness yet).
 
