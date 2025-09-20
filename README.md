@@ -22,7 +22,7 @@ Inspired by [evilprince2009.github.io](https://github.com/evilprince2009/evilpri
 
 🎯 **Live Site**: [jo-sh.vercel.app](https://jo-sh.vercel.app/)
 
----
+<img src="assets/demo.gif" alt="JoSh terminal interface demo">
 
 ## 🚀 Features
 
