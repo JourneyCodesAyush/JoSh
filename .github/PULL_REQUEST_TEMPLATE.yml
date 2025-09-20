@@ -1,0 +1,73 @@
+name: "📦 Pull Request Template"
+description: Submit changes to JoSh (Journey Shell)
+title: "[<type>] <short summary>"
+labels: [pull request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to **JoSh**! Please complete this form so we can review your pull request efficiently.
+
+  - type: input
+    id: summary
+    attributes:
+      label: PR Summary
+      placeholder: "Add 'weather' command for terminal"
+      description: A short, descriptive summary of the changes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: What has changed?
+      placeholder: |
+        - Added new `weather` command to fetch current weather details
+        - Fixed UI issue with prompt cursor alignment
+        - Updated documentation to include new commands
+      description: List the key changes made in this PR (use bullet points for each change).
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: areas
+    attributes:
+      label: Affected Areas
+      options:
+        - label: Core logic (`commands/`)
+        - label: UI (`ui/`)
+        - label: Documentation (`README.md`)
+        - label: Configuration
+        - label: Other
+    validations:
+      required: true
+
+  - type: input
+    id: issue
+    attributes:
+      label: Related Issue
+      placeholder: "Closes #42"
+      description: Link to any related issues (use `Closes \#issue_number` to automatically close issues upon merge).
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Instructions
+      placeholder: |
+        1. Run `josh weather`
+        2. Verify the command returns current weather data
+        3. Check that prompt alignment is correct after command output
+      description: How should we test this change? Include specific steps to verify the functionality.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: My code follows the project's style guidelines
+        - label: I have tested my changes locally
+        - label: I have added relevant tests (if applicable)
+        - label: I have updated related documentation
+        - label: This PR is ready for review
