@@ -1,0 +1,43 @@
+name: "🚀 Feature Request"
+description: Suggest an idea for this project
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got a great idea for **JoSh**? Let us know here! We're always looking for ways to improve the terminal experience.
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature Summary
+      placeholder: "Add support for customizable prompt symbols"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like to see?
+      placeholder: |
+        Describe the feature, how it would work in JoSh, and why it would be useful to users.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      placeholder: |
+        Is this inspired by another terminal app or project? Include links, mockups, or user stories if relevant.
+
+  - type: checkboxes
+    id: type
+    attributes:
+      label: What kind of feature is this?
+      options:
+        - label: Terminal command (new functionality)
+        - label: UI/UX enhancement (visuals, interaction)
+        - label: Core shell behavior (input handling, command parsing)
+        - label: Configuration or customization
+        - label: Other
