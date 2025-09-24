@@ -6,18 +6,69 @@ Thank you for your interest in contributing to **JoSh**! Your help in improving 
 
 ## 🚀 How to Contribute
 
-### 1. Fork the Repository
+### 1. Understand the Project Structure
+
+```bash
+josh/
+├── favicon.ico        # Website favicon
+├── package.json       # Project metadata and dependencies
+├── package-lock.json  # Exact dependency versions
+├── eslint.config.mjs  # ESLint configuration
+├── .stylelintrc.json  # Stylelint configuration
+├── index.html         # Main HTML file
+├── style.css          # Global styles
+├── jsconfig.json      # JS project settings (paths, aliases)
+├── js/
+│   ├── ui.js          # DOM manipulation & terminal UI logic
+│   ├── filesystem.js  # Virtual file system logic
+│   ├── manuals.js     # Manual/help content for commands
+│   ├── commandHistory.js # Command history stack
+│   ├── types.js       # JSDoc type definitions
+│   ├── main.js        # Entry point: initializes terminal
+│   ├── utils.js       # Helper functions
+│   └── commands/      # All terminal commands
+│       ├── cat.js
+│       ├── cd.js
+│       ├── clear.js
+│       ├── date.js
+│       ├── echo.js
+│       ├── help.js
+│       ├── history.js
+│       ├── ls.js
+│       ├── man.js
+│       ├── pwd.js
+│       ├── setname.js
+│       ├── whoami.js
+│       ├── social.js
+│       ├── registry.js # Command registration
+│       └── index.js    # Central export for commands
+├── LICENSE             # License information
+├── CODE_OF_CONDUCT.md  # Code of Conduct
+├── CONTRIBUTING.md  # Contribution guidelines
+└── README.md           # You're reading it!
+
+```
+
+_Key Directories and Files_
+
+- `js/commands/`: The folder where you can add or modify terminal commands
+- `js/filesystem.js`: This is where you edit the virtual file system
+- `js/commands/registry.js`: The place to register new commands for the terminal to recognize
+
+Familiarizing yourself with this layout will help you make more effective contributions.
+
+### 2. Fork the Repository
 
 Click the **Fork** button at the top right of the repository page to create your own copy.
 
-### 2. Clone Your Fork
+### 3. Clone Your Fork
 
 ```bash
 git clone https://github.com/<your-username>/josh.git
 cd josh
 ```
 
-### 3. Create a New Branch
+### 4. Create a New Branch
 
 Create a feature or fix branch based on the change you're making:
 
@@ -27,7 +78,7 @@ git checkout -b feat/your-feature-name
 
 Use a descriptive name: `fix/prompt-glitch`, `docs/update-readme`, etc.
 
-### 4. Make Your Changes
+### 5. Make Your Changes
 
 - Add or improve commands
 - Fix bugs or UI issues
@@ -36,7 +87,7 @@ Use a descriptive name: `fix/prompt-glitch`, `docs/update-readme`, etc.
 
 Make sure your changes follow the existing structure and are linted.
 
-### 5. Commit Your Changes
+### 6. Commit Your Changes
 
 Use **Conventional Commits** for clear and consistent commit messages:
 
@@ -60,13 +111,13 @@ fix(ui): correct prompt cursor alignment
 docs: update usage instructions in README
 ```
 
-### 6. Push Your Branch
+### 7. Push Your Branch
 
 ```bash
 git push origin feat/your-feature-name
 ```
 
-### 7. Open a Pull Request
+### 8. Open a Pull Request
 
 Go to the original repo and open a **Pull Request** from your forked branch.
 Provide a clear description of what you changed and why.
