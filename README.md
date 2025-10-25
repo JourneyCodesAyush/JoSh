@@ -6,8 +6,10 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue)
+![Angular Commit Messages](https://img.shields.io/badge/commits-angular-orange)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fjo-sh.vercel.app)
 ![Repo Size](https://img.shields.io/github/repo-size/JourneyCodesAyush/josh)
+[![Discussions](https://img.shields.io/badge/Discussions-Open-violet)](https://github.com/JourneyCodesAyush/josh/discussions)
 
 ---
 
