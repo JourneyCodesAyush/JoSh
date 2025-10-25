@@ -64,7 +64,7 @@ Click the **Fork** button at the top right of the repository page to create your
 ### 3. Clone Your Fork
 
 ```bash
-git clone https://github.com/<your-username>/josh.git
+git clone https://github.com/journeycodesayush/josh.git
 cd josh
 ```
 
@@ -87,21 +87,52 @@ Use a descriptive name: `fix/prompt-glitch`, `docs/update-readme`, etc.
 
 Make sure your changes follow the existing structure and are linted.
 
-### 6. Commit Your Changes
+### 6. Commit Your Changes (Angular Commit Message Format)
 
-Use **Conventional Commits** for clear and consistent commit messages:
+All commits to **JoSh** must follow the **Angular Commit Message Format**.
+This helps maintain a clear project history and enables automated changelog generation.
 
-`<type>(<scope>): <short message>`
+Each commit consists of three parts:
 
-| Type       | Description (Scope examples: command, ui, readme)     |
-| ---------- | ----------------------------------------------------- |
-| `feat`     | A new feature                                         |
-| `fix`      | A bug fix                                             |
-| `docs`     | Changes to documentation only                         |
-| `style`    | Code formatting changes (no logic impact)             |
-| `refactor` | Code improvements that don't fix bugs or add features |
-| `test`     | Adding or modifying tests                             |
-| `chore`    | Routine tasks, build scripts, config changes          |
+```text
+<header> <body> <footer>
+```
+
+- `<header>` is mandatory
+- Keep the `<header>` ≤ 72 characters
+- `<body>` is mandatory for all commits except docs and must be at least 20 characters
+- `<footer>` is optional
+
+**Commit Header**
+
+```bash
+<type>(<scope>): <short summary>
+```
+
+- **type** (required): one of:
+
+  | Type       | Description (Scope examples: command, ui, readme)     |
+  | ---------- | ----------------------------------------------------- |
+  | `feat`     | A new feature                                         |
+  | `fix`      | A bug fix                                             |
+  | `docs`     | Changes to documentation only                         |
+  | `style`    | Code formatting changes (no logic impact)             |
+  | `refactor` | Code improvements that don't fix bugs or add features |
+  | `test`     | Adding or modifying tests                             |
+  | `chore`    | Routine tasks, build scripts, config changes          |
+  | `ci`       | Changes to CI configuration                           |
+  | `perf`     | Performance improvement                               |
+  | `build`    | Changes that affect build system or dependencies      |
+
+- **scope** (optional): the part of the codebase affected.
+
+  For JoSh, suggested scopes:
+
+  ```nginx
+  ui | commands | filesystem | registry | docs | tests
+  ```
+
+- **summary** (required): short imperative description, no capitalization, no period
 
 #### Examples
 
@@ -110,6 +141,55 @@ feat(command): add weather command
 fix(ui): correct prompt cursor alignment
 docs: update usage instructions in README
 ```
+
+#### Commit Body
+
+- Explain **why** the change was made
+- Compare previous behavior with the new behavior
+- Use imperative, present tense
+- Must be at least **20 characters** (except `docs`)
+
+#### Example
+
+```bash
+add new weather command to terminal
+allows users to fetch current weather by city name
+```
+
+#### Commit Footer
+
+- Use for **breaking changes, deprecations, or GitHub issues**
+
+#### Example
+
+```md
+BREAKING CHANGE: terminal prompt logic updated
+
+previous prompt handling relied on global state
+update scripts to use new prompt API
+
+Fixes #42
+```
+
+```md
+DEPRECATED: old cat command
+
+replaced by new cat command supporting directories
+Closes #99
+```
+
+```md
+revert: feat(commands): add weather command
+
+This reverts commit ab12cd34ef56.
+Reason: new command caused conflicts with existing commands
+```
+
+#### ✨ Commit Formatting Tips
+
+- Wrap body lines at ~72 characters
+- Use imperative, present tense: "add feature", not "added feature"
+- Be concise but descriptive
 
 ### 7. Push Your Branch
 
