@@ -321,3 +321,81 @@ footer a {
     text-decoration: none;
     color: var(--primary-text);
 }
+
+/* Mobile reponsive design */
+@media (max-width: 480px) {
+
+  body {
+    overflow-x: hidden;
+    font-size: 14px;
+  }
+
+  .terminal {
+    width: 95vw;
+    height: 90vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 6px 0 #a406ff;
+    padding: 8px;
+    position: absolute;
+  }
+
+  .terminalBody {
+    padding: 0.4rem;
+    white-space: pre-wrap; 
+    word-break: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    box-sizing: border-box;
+  }
+
+  .userShell {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  .content {
+    flex-wrap: wrap;
+    left: 0;
+    gap: 4px;
+  }
+
+  .userInfo {
+    font-size: 0.9rem;
+    max-width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .directory {
+    font-size: 0.9rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  .userOutput,
+  .welcomeMessage {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 6px 0;
+  }
+
+  pre, code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
