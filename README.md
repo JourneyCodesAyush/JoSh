@@ -1,5 +1,9 @@
 # 🖥️ JoSh (Journey Shell)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/status-low%20activity-lightgrey?style=for-the-badge&logo=&logoColor=white" alt="Low Activity">
+</p>
+
 ![HTML](https://img.shields.io/badge/HTML-5-orange)
 ![CSS](https://img.shields.io/badge/CSS-3-blue)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
